@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ninza Domains — find your name</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0e0c;--fg:#f2efe6;--mut:#8d8a80;--card:#171714;--line:#2a2a25;--ac:#c6ff3d;--acf:#10120a;--bad:#ff6b5a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0c}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f1e8;--fg:#15150f;--mut:#6b685e;--card:#fffdf6;--line:#dcd8cb;--bad:#c2301f}}
+:root[data-theme="dark"]{--bg:#0e0e0c}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 'Bricolage Grotesque',system-ui,sans-serif;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:inherit}
+#bar{position:fixed;left:0;top:0;height:3px;width:0;background:var(--ac);z-index:60}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:14px;padding:16px 5vw;transition:.3s;backdrop-filter:blur(10px)}
+nav.s{padding:9px 5vw;background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;margin-right:auto}
+.logo b{color:var(--ac);-webkit-text-stroke:0}
+nav a.l{font-size:14px;color:var(--mut);text-decoration:none}
+nav a.l:hover{color:var(--fg)}
+@media(max-width:700px){nav a.l{display:none}}
+.btn{font:600 14px 'Bricolage Grotesque',sans-serif;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:9px 16px;border-radius:99px;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--fg)}
+.btn.p{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px var(--ac)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+#cc{background:var(--ac);color:var(--acf);border-radius:99px;padding:0 7px;margin-left:6px;font-size:12px}
+section{padding:90px 5vw;position:relative}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.grid{position:absolute;inset:-20% -5%;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 70%);z-index:-1}
+.orb{position:absolute;right:6vw;top:14%;width:min(34vw,360px);aspect-ratio:1;border-radius:50%;border:1px dashed var(--ac);opacity:.5;z-index:-1}
+.orb::after{content:'.xyz';position:absolute;left:12%;top:20%;font:600 14px 'JetBrains Mono';color:var(--ac)}
+.tag{font:600 12px 'JetBrains Mono';color:var(--ac);letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(44px,9vw,120px);line-height:.92;letter-spacing:-.05em;font-weight:800;margin:18px 0 22px;max-width:12ch}
+h1 em{font-style:normal;color:var(--ac)}
+.sub{color:var(--mut);max-width:46ch;font-size:18px;margin-bottom:34px}
+.sf{display:flex;gap:8px;max-width:640px;padding:7px;border:1px solid var(--line);background:var(--card);border-radius:99px}
+.sf input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--fg);font:500 18px 'JetBrains Mono',monospace;padding:0 16px}
+#res{max-width:640px;margin-top:18px;display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid var(--line);background:var(--card);border-radius:14px;animation:in .4s both}
+.row .d{flex:1;font:600 15px 'JetBrains Mono';overflow-wrap:anywhere}
+.row .st{font-size:13px;color:var(--ac)}
+.row.t .st{color:var(--bad)}
+.row.t .d{text-decoration:line-through;opacity:.55}
+.row .pr{font:600 14px 'JetBrains Mono'}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;white-space:nowrap}
+.mq div{display:inline-block;animation:mq 30s linear infinite;font:800 38px 'Bricolage Grotesque';letter-spacing:-.03em}
+.mq span{margin:0 22px;color:var(--mut)}.mq span:nth-child(3n){color:var(--ac)}
+@keyframes mq{to{transform:translateX(-50%)}}
+h2{font-size:clamp(32px,5vw,56px);letter-spacing:-.04em;line-height:1;margin:10px 0 36px}
+.tl{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.tc{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:20px;cursor:pointer;transition:transform .2s,border-color .2s;transform-style:preserve-3d}
+.tc:hover{border-color:var(--ac)}
+.tc b{display:block;font:800 28px 'Bricolage Grotesque';letter-spacing:-.03em}
+.tc small{color:var(--mut);font:400 12px 'JetBrains Mono'}
+.tc p{margin-top:14px;font:600 15px 'JetBrains Mono';color:var(--ac)}
+.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.pc{border:1px solid var(--line);background:var(--card);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.pc.f{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.pc h3{font-size:24px;letter-spacing:-.02em}
+.pc .pp{font:800 44px 'Bricolage Grotesque';letter-spacing:-.04em}.pc .pp small{font:400 13px 'JetBrains Mono';color:var(--mut)}
+.pc ul{list-style:none;padding:0;color:var(--mut);font-size:15px;flex:1}
+.pc li{padding:6px 0;border-bottom:1px dashed var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+.stats b{display:block;font:800 clamp(44px,7vw,80px)/1 'Bricolage Grotesque';letter-spacing:-.05em;color:var(--ac)}
+.stats span{color:var(--mut)}
+.steps{display:grid;gap:14px;margin-top:50px;counter-reset:s}
+.st2{counter-increment:s;display:flex;gap:20px;align-items:baseline;padding:22px 0;border-top:1px solid var(--line);font-size:20px}
+.st2::before{content:'0' counter(s);font:600 14px 'JetBrains Mono';color:var(--ac)}
+.st2 span{color:var(--mut);font-size:15px;display:block}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.v{opacity:1;transform:none}
+footer{padding:50px 5vw;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;color:var(--mut);font-size:14px}
+.ov{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:20px}
+.ov.o{display:flex}
+.md{width:min(440px,100%);max-height:90vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;animation:in .4s}
+.md h3{font-size:28px;letter-spacing:-.03em;margin-bottom:6px}
+.md p{color:var(--mut);font-size:14px;margin-bottom:16px}
+.md input{width:100%;margin-bottom:10px;padding:13px 15px;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--fg);font:500 15px 'Bricolage Grotesque'}
+.md input:focus{outline:2px solid var(--ac);outline-offset:-1px}
+.tabs{display:flex;gap:6px;margin-bottom:18px}.tabs .btn{flex:1}.tabs .on{background:var(--fg);color:var(--bg)}
+.md .btn{width:100%;margin-top:6px;padding:13px}
+.dr{position:fixed;right:0;top:0;bottom:0;width:min(400px,100%);z-index:90;background:var(--card);border-left:1px solid var(--line);transform:translateX(100%);transition:.4s cubic-bezier(.2,.7,.2,1);padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+.dr.o{transform:none}
+.dr .it{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);font:600 14px 'JetBrains Mono'}
+.dr .it button{background:none;border:0;color:var(--bad);cursor:pointer;font-size:12px;margin-left:8px}
+#items{flex:1;overflow:auto}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;font:12px/1.6 'JetBrains Mono';white-space:pre-wrap;margin-bottom:12px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav id="nav">
+  <a class="logo" href="#top">ninza<b>.</b>domains</a>
+  <a class="l" href="#tlds">Extensions</a><a class="l" href="#plans">Plans</a><a class="l" href="#how">How it works</a>
+  <button class="btn" id="acc">Login</button>
+  <button class="btn p" id="cb">Cart<span id="cc">0</span></button>
+</nav>
+
+<section class="hero" id="top">
+  <div class="grid" data-p=".15"></div><div class="orb" data-p="-.2"></div>
+  <span class="tag">Domains · Plans · Instant support</span>
+  <h1>Your name, <em>online</em> today.</h1>
+  <p class="sub">Search any name, see what’s free across every extension, and check out through a Discord ticket — a real person handles your order.</p>
+  <form class="sf" id="sf"><input id="q" placeholder="search a domain, e.g. mybrand" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="btn p">Search</button></form>
+  <div id="res"></div>
+</section>
+
+<div class="mq"><div id="mq"></div></div>
+
+<section id="tlds">
+  <span class="tag rv">Extensions</span><h2 class="rv">Pick your corner of the internet.</h2>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section id="plans">
+  <span class="tag rv">Plans</span><h2 class="rv">Bundles for people who ship.</h2>
+  <div class="pl" id="pl"></div>
+</section>
+
+<section id="how">
+  <div class="stats rv"><div><b data-n="14">0</b><span>extensions on sale</span></div><div><b data-n="24">0</b><span>hour ticket replies, max</span></div><div><b data-n="100">0</b><span>% human-handled orders</span></div></div>
+  <div class="steps">
+    <div class="st2 rv"><div>Search & add to cart<span>Free names show a buy button. Taken ones are marked clearly.</span></div></div>
+    <div class="st2 rv"><div>Checkout opens Discord<span>Your order summary is copied. Paste it into a new ticket.</span></div></div>
+    <div class="st2 rv"><div>Staff process your ticket<span>Our owner and devs confirm, take payment and register the domain.</span></div></div>
+  </div>
+</section>
+
+<footer><span>© 2026 Ninza Domains</span><a href="https://discord.gg/ninzacloud" target="_blank" rel="noopener">discord.gg/ninzacloud</a></footer>
+
+<div class="ov" id="auth"><div class="md">
+  <h3>Welcome in.</h3><p>Log in or create an account to save your cart and orders.</p>
+  <div class="tabs"><button class="btn on" data-t="l">Login</button><button class="btn" data-t="r">Register</button></div>
+  <input id="un" placeholder="Username" style="display:none">
+  <input id="em" type="email" placeholder="Email"><input id="pw" type="password" placeholder="Password">
+  <button class="btn p" id="go">Login</button>
+  <button class="btn" id="guest">Continue as guest</button>
+</div></div>
+
+<div class="ov" id="co"><div class="md">
+  <h3>Order copied.</h3><p>Discord should have opened. Create a ticket there and paste this summary.</p>
+  <pre id="sum"></pre>
+  <a class="btn p" style="display:block;text-align:center;text-decoration:none;padding:13px;border-radius:99px" href="https://discord.gg/ninzacloud" target="_blank" rel="noopener">Open Discord again</a>
+  <button class="btn" id="cl">Close</button>
+</div></div>
+
+<aside class="dr" id="dr">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h3 style="font-size:26px;letter-spacing:-.03em">Your cart</h3><button class="btn" id="dx">Close</button></div>
+  <div id="items"></div>
+  <div class="it" style="border:0;font-size:18px"><span>Total</span><span id="tot">$0.00</span></div>
+  <button class="btn p" id="chk" style="padding:14px">Checkout via Discord</button>
+</aside>
+
+<script>
+const T=[['com',10.19],['net',11.66],['org',11.00],['xyz',1.50],['fun',1.00],['store',2.00],['online',2.00],['site',2.00],['info',3.00],['co',15.00],['me',14.00],['cc',8.00],['io',27.00],['ai',80.00]];
+const P=[['Starter Pack','Domain + DNS + email forwarding',4.99,'/mo'],['Builder','Domain, hosting, SSL & 1 site',9.99,'/mo',1],['Reseller','10 domain credits + priority tickets',29.99,'/mo']];
+const COMMON=['google','facebook','amazon','apple','test','shop','store','hello','admin','cloud','minecraft','discord','game','gaming','bot','web','my','mc','site','online'];
+const INV='https://discord.gg/ninzacloud';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let cart=[],user=null;
+const ls={g(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},s(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const money=n=>'$'+n.toFixed(2);
+const hash=s=>{let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return (h>>>0)%100};
+function taken(n,t){if(COMMON.includes(n))return true;const lim={com:62,net:42,org:38,ai:50,io:45}[t]||24;return n.length<=3?hash(n+t)<lim+30:hash(n+t)<lim}
+function clean(v){v=v.toLowerCase().trim().replace(/^https?:\/\//,'').replace(/^www\./,'');const p=v.split('.');return{n:p[0].replace(/[^a-z0-9-]/g,''),t:p[1]||''}}
+
+$('#mq').innerHTML=(T.map(t=>`<span>.${t[0]}</span>`).join('')).repeat(4);
+$('#tl').innerHTML=T.map(t=>`<div class="tc rv" data-t="${t[0]}"><b>.${t[0]}</b><small>per year</small><p>${money(t[1])}</p></div>`).join('');
+$('#pl').innerHTML=P.map((p,i)=>`<div class="pc rv${p[4]?' f':''}"><h3>${p[0]}</h3><div class="pp">${money(p[2])}<small>${p[3]}</small></div><ul>${p[1].split(/, | \+ | & /).map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn ${p[4]?'p':''}" data-pl="${i}">Add to cart</button></div>`).join('');
+
+function search(raw){
+  const {n,t}=clean(raw);if(!n)return;
+  const list=t&&T.find(x=>x[0]===t)?[T.find(x=>x[0]===t),...T.filter(x=>x[0]!==t).slice(0,5)]:T.slice(0,8);
+  $('#res').innerHTML=list.map((x,i)=>{const d=n+'.'+x[0],tk=taken(n,x[0]);
+    return `<div class="row${tk?' t':''}" style="animation-delay:${i*60}ms"><span class="d">${d}</span><span class="st">${tk?'Not available':'Available'}</span><span class="pr">${money(x[1])}</span>${tk?'':`<button class="btn p" data-add="${d}|${x[1]}">Buy</button>`}</div>`}).join('');
+}
+$('#sf').onsubmit=e=>{e.preventDefault();search($('#q').value)};
+$('#tl').onclick=e=>{const c=e.target.closest('.tc');if(!c)return;const {n}=clean($('#q').value);$('#q').value=(n||'yourname')+'.'+c.dataset.t;scrollTo({top:0});search($('#q').value)};
+
+function add(id,label,price){if(cart.some(c=>c.id===id)){open_('dr');return}cart.push({id,label,price});save();open_('dr')}
+function save(){ls.s('cart',cart);render()}
+function render(){$('#cc').textContent=cart.length;$('#items').innerHTML=cart.length?cart.map((c,i)=>`<div class="it"><span>${c.label}</span><span>${money(c.price)}<button data-rm="${i}">remove</button></span></div>`).join(''):'<p style="color:var(--mut);padding:20px 0">Nothing here yet.</p>';$('#tot').textContent=money(cart.reduce((a,c)=>a+c.price,0));$('#chk').disabled=!cart.length}
+function open_(id){id==='dr'?$('#dr').classList.add('o'):$('#'+id).classList.add('o')}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-add]');if(a){const [d,p]=a.dataset.add.split('|');add(d,d,+p);a.textContent='In cart';return}
+  const p=e.target.closest('[data-pl]');if(p){const x=P[p.dataset.pl];add('plan'+p.dataset.pl,x[0]+' (monthly)',x[2])}
+  const r=e.target.closest('[data-rm]');if(r){cart.splice(+r.dataset.rm,1);save()}
+});
+$('#cb').onclick=()=>open_('dr');$('#dx').onclick=()=>$('#dr').classList.remove('o');
+$('#chk').onclick=()=>{
+  const id='NZ-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  const txt=`Order ${id}\nUser: ${user?user.name+' ('+user.email+')':'guest'}\n`+cart.map(c=>`- ${c.label} — ${money(c.price)}`).join('\n')+`\nTotal: ${money(cart.reduce((a,c)=>a+c.price,0))}`;
+  try{navigator.clipboard.writeText(txt)}catch(e){}
+  window.open(INV,'_blank','noopener');
+  $('#sum').textContent=txt+'\n\nCreate a ticket in #create-ticket and paste this.';
+  $('#dr').classList.remove('o');open_('co');
+};
+$('#cl').onclick=()=>{$('#co').classList.remove('o');cart=[];save()};
+
+let mode='l';
+$$('.tabs .btn').forEach(b=>b.onclick=()=>{mode=b.dataset.t;$$('.tabs .btn').forEach(x=>x.classList.toggle('on',x===b));$('#un').style.display=mode==='r'?'block':'none';$('#go').textContent=mode==='r'?'Create account':'Login'});
+$('#go').onclick=()=>{
+  const email=$('#em').value.trim(),pw=$('#pw').value;if(!/\S+@\S+\.\S+/.test(email)||pw.length<6){alert('Enter a valid email and a password of 6+ characters.');return}
+  const users=ls.g('users')||{};
+  if(mode==='r'){users[email]={name:$('#un').value.trim()||email.split('@')[0],pw};ls.s('users',users)}
+  else if(!users[email]||users[email].pw!==pw){alert('No account matches that. Try Register.');return}
+  user={name:users[email].name,email};ls.s('user',user);ui();$('#auth').classList.remove('o')
+};
+$('#guest').onclick=()=>{ls.s('guest',1);$('#auth').classList.remove('o')};
+$('#acc').onclick=()=>{if(user){user=null;ls.s('user',null);ui()}else open_('auth')};
+function ui(){$('#acc').textContent=user?user.name+' · Logout':'Login'}
+
+user=ls.g('user');cart=ls.g('cart')||[];ui();render();
+if(!user&&!ls.g('guest'))setTimeout(()=>open_('auth'),600);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);
+  e.target.querySelectorAll?.('[data-n]').forEach(count)}}),{threshold:.15});
+$$('.rv,.stats').forEach(el=>io.observe(el));
+function count(el){const n=+el.dataset.n;let i=0;const t=setInterval(()=>{i+=Math.ceil(n/30);if(i>=n){i=n;clearInterval(t)}el.textContent=i},35)}
+addEventListener('scroll',()=>{const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  $('#bar').style.width=(y/h*100)+'%';$('#nav').classList.toggle('s',y>40);
+  $$('[data-p]').forEach(el=>el.style.transform=`translateY(${y*el.dataset.p}px)`)},{passive:true});
+$$('.tc').forEach(c=>{c.onmousemove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(600px) rotateY(${x*10}deg) rotateX(${-y*10}deg)`};c.onmouseleave=()=>c.style.transform=''});
+</script>
+</body>
+</html>
